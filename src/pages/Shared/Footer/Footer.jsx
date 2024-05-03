@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className="footer  p-10 bg-neutral text-neutral-content">
         <aside>
           <svg
             width="50"
@@ -21,7 +21,7 @@ const Footer = () => {
           </p>
         </aside>
         <nav>
-          <h6 className="footer-title">Social</h6>
+          <h6 className="footer-title bg-black">Social</h6>
           <div className="grid grid-flow-col gap-4">
             <a>
               <svg

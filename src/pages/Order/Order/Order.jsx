@@ -5,11 +5,16 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import { useState } from "react";
 import useMenu from "../../../useHooks/useMenu";
-import FoodCard from "../FoodCard/FoodCard";
 import OrderTab from "../OrderTab/OrderTab";
+import { useParams } from "react-router-dom";
 
 const Order = () => {
-    const [tabidx, settabidx] = useState(0);
+    // index anujayi data see
+const categorys = ['pizza ', 'salad' , 'soup' , 'dessert' , 'drinks']
+// destination
+const {category} = useParams();
+const indexby = categorys.indexOf(category)
+const [tabidx, settabidx] = useState(indexby);
 
 const [menu] = useMenu();
 const desserts = menu.filter((item) => item.category === "dessert");
@@ -18,7 +23,7 @@ const salad = menu.filter((item) => item.category === "salad");
 const pizza = menu.filter((item) => item.category === "pizza");
 const drinks = menu.filter((item) => item.category === "drinks");
 
-// destination
+
 
     return (
         <div >
@@ -30,11 +35,11 @@ const drinks = menu.filter((item) => item.category === "drinks");
             <div className=" py-6 text-center">
                 <Tabs defaultIndex={tabidx} onSelect={(index) =>settabidx(index)}>
                 <TabList>
-                    <Tab>Pizz</Tab>
-                    <Tab>Salad</Tab>
-                    <Tab>Soup</Tab>
-                    <Tab>Dessert</Tab>
-                    <Tab>Drinks</Tab>
+                    <Tab>pizza</Tab>
+                    <Tab>salad</Tab>
+                    <Tab>soup</Tab>
+                    <Tab>dessert</Tab>
+                    <Tab>drinks</Tab>
                 </TabList>
                     <TabPanel>
                         <OrderTab item={pizza}></OrderTab>

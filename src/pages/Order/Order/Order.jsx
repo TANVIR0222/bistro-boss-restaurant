@@ -35,7 +35,7 @@ const drinks = menu.filter((item) => item.category === "drinks");
             <div className=" py-6 text-center">
                 <Tabs defaultIndex={tabidx} onSelect={(index) =>settabidx(index)}>
                 <TabList>
-                    <Tab>pizza</Tab>
+                    <Tab>Pizza</Tab>
                     <Tab>salad</Tab>
                     <Tab>soup</Tab>
                     <Tab>dessert</Tab>

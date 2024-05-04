@@ -12,12 +12,11 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 // import { data } from "autoprefixer";
 import { Rating } from "@smastrom/react-rating";
-import { FaQ } from "react-icons/fa6";
 
 const Testimonial = () => {
   const [reviews, setreviews] = useState([]);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setreviews(data));
   }, []);

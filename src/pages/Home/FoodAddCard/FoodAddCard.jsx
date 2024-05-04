@@ -1,6 +1,8 @@
 const FoodAddCard = ({food}) => {
 
-    const{name, recipe, image} = food;
+    const{name, recipe, image , price} = food;
+
+    
 
   return (
     <div>
@@ -11,6 +13,7 @@ const FoodAddCard = ({food}) => {
             alt="Shoes"
             className="rounded-xl"
           />
+          <p>{price}</p>
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{name}</h2>

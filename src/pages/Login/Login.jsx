@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 //React Simple Captcha
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { AuthContex } from "../../AuthProbider/AuthProbider";
 
 const Login = () => {
+
+    const {createuser} = useContext(AuthContex);
+
     //React Simple Captcha
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -15,7 +19,19 @@ const Login = () => {
     const form = event.target;
     const pass = form.password.value;
     const email = form.email.value;
-    // console.log(pass , email);
+
+    createuser(email ,pass) 
+    .then((result) => {
+        const user = result.user;
+        // ...
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode , errorMessage);
+        // ..
+      });
 
   };
     //React Simple Captcha ---- validate captcha

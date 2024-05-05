@@ -1,22 +1,42 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContex } from "../../AuthProbider/AuthProbider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SingUp = () => {
-  const {createuser} = useContext(AuthContex);
+  const {createuser , updateUserProfile} = useContext(AuthContex);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm()
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
+    console.log('ooo');
     console.log(data);
     createuser(data.email, data.password)
     .then(result => {
       const users = result.user;
       console.log(users);
+      updateUserProfile(data.name , data.photoURL)
+      .then(()=> {
+        console.log('update ok');
+        reset()
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Profile Update",
+          showConfirmButton: false,
+          timer: 1500
+
+        });
+        navigate('/');
+      })
+      .catch(error => console.log(error));
     })
 
   };
@@ -49,6 +69,19 @@ const SingUp = () => {
                 />
                 {errors.name && <span className="text-red-600"> Name field is required</span>}
               </div>
+            <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("Photo URL" ,{ required: true })}
+                  placeholder="Photo URL"
+                  name="photoURL"
+                  className="input input-bordered"
+                />
+                {errors.name && <span className="text-red-600"> Photo URL field is required</span>}
+              </div>
 
               <div className="form-control">
                 <label className="label">
@@ -76,7 +109,7 @@ const SingUp = () => {
                 />
                 {errors.password?.type === 'required' && <p> <span className="text-red-600">This field is required</span></p>}
                 {errors.password?.type === 'minLength' && <p><span className="text-red-600">Password must be 6 character</span></p>}
-                {errors.password?.type === 'pattern' && <p><span className="text-red-600 text-start">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span></p>}
+                {errors.password?.type === 'pattern' && <p><span className="text-red-600">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span></p>}
 
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
@@ -87,7 +120,7 @@ const SingUp = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <p> <small> New Here? <Link className="text-blue-700" to={'/login'}> Don't have an account  </Link> </small> </p>
+              <p> <small> New Here? <Link className="text-blue-700" to={'/login'}> Dont have an account  </Link> </small> </p>
             </form>
           </div>
         </div>

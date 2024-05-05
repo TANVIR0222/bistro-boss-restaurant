@@ -3,12 +3,18 @@ import { Helmet } from "react-helmet-async";
 //React Simple Captcha
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContex } from "../../AuthProbider/AuthProbider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Login = () => {
 
     const {singIn} = useContext(AuthContex);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    // 
+    const from = location.state?.from?.pathname || "/";
 
     //React Simple Captcha
     useEffect(() => {
@@ -33,6 +39,7 @@ const Login = () => {
           showConfirmButton: false,
           timer: 1500
           });
+          navigate(from, { replace: true });
 
       })
       .catch((error) => {

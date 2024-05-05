@@ -1,9 +1,10 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 //React Simple Captcha
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContex } from "../../AuthProbider/AuthProbider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -18,14 +19,21 @@ const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
-    const pass = form.password.value;
     const email = form.email.value;
-
+    const pass = form.password.value;
+    console.log(email , pass);
     singIn(email ,pass) 
     .then((result) => {
         const user = result.user;
-        // ...
         console.log(user);
+          Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Login success full",
+          showConfirmButton: false,
+          timer: 1500
+          });
+
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -36,17 +44,17 @@ const Login = () => {
 
   };
     //React Simple Captcha ---- validate captcha
-    const captchaRef = useRef(null);
     const [disable, setDisable] = useState(true);
 
-    const handleVC = () =>{
-    const value = captchaRef.current.value;
+    const handleVC = (e) =>{
+    const value = e.target.value;
     if(validateCaptcha(value)){
         setDisable(false);
     }else{
         setDisable(true);
     }
   }
+  // 
 
   return (
       
@@ -55,6 +63,7 @@ const Login = () => {
         <Helmet>
             <title>bistro-boss | Login</title>
         </Helmet>
+
 
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse">
@@ -104,12 +113,12 @@ const Login = () => {
                   <input
                     type="text"
                     name="captcha"
-                    ref={captchaRef}
+                    onBlur={handleVC}
                     placeholder="Enter hear captcha"
                     className="input input-bordered"
                     required
                   />
-                  <button onClick={handleVC} className="btn btn-outline mt-5 btn-sm">validate</button>
+                  <button  className="btn btn-outline mt-5 btn-sm">validate</button>
 
                   <label className="label">
                     <a href="#" className="label-text-alt link link-hover">

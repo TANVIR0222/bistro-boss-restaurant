@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContex } from "../../AuthProbider/AuthProbider";
+import { Link } from "react-router-dom";
 
 const SingUp = () => {
   const {createuser} = useContext(AuthContex);
@@ -86,6 +87,7 @@ const SingUp = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+              <p> <small> New Here? <Link className="text-blue-700" to={'/login'}> Don't have an account  </Link> </small> </p>
             </form>
           </div>
         </div>

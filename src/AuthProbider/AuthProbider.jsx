@@ -13,9 +13,9 @@ const AuthProbider = ({children}) => {
     const [loading , setLoading] = useState(true);
 
     // sing in user
-    const singIn = (emai, pass)=>{
+    const singIn = (email, pass)=>{
         setLoading(true);
-        return signInWithEmailAndPassword(  emai , pass)
+        return signInWithEmailAndPassword(auth, email , pass)
     }
     // creater user 
     const createuser = (email , pass) =>{

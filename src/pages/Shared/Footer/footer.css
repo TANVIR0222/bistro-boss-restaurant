@@ -1,0 +1,11 @@
+.custom_color{
+    width: 100%;
+    height: 15rem;
+    background: linear-gradient(
+      to right,
+      rgb(36, 48, 69) 0%,
+      rgb(36, 48, 69) 50%,
+      rgb(10, 13, 20) 50%,
+      rgb(10, 13, 20) 100%
+    );
+}

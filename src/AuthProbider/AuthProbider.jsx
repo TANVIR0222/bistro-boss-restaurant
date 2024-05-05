@@ -1,5 +1,5 @@
 
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {  createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../Firebase/Firebase";
 
@@ -15,7 +15,7 @@ const AuthProbider = ({children}) => {
     // sing in user
     const singIn = (emai, pass)=>{
         setLoading(true);
-        return signInWithEmailAndPassword( emai , pass)
+        return signInWithEmailAndPassword(  emai , pass)
     }
     // creater user 
     const createuser = (email , pass) =>{

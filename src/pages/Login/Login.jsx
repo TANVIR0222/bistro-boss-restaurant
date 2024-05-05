@@ -1,12 +1,13 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 //React Simple Captcha
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContex } from "../../AuthProbider/AuthProbider";
+import { Link } from "react-router-dom";
 
 const Login = () => {
 
-    const {createuser} = useContext(AuthContex);
+    const {singIn} = useContext(AuthContex);
 
     //React Simple Captcha
     useEffect(() => {
@@ -20,7 +21,7 @@ const Login = () => {
     const pass = form.password.value;
     const email = form.email.value;
 
-    createuser(email ,pass) 
+    singIn(email ,pass) 
     .then((result) => {
         const user = result.user;
         // ...
@@ -37,6 +38,7 @@ const Login = () => {
     //React Simple Captcha ---- validate captcha
     const captchaRef = useRef(null);
     const [disable, setDisable] = useState(true);
+
     const handleVC = () =>{
     const value = captchaRef.current.value;
     if(validateCaptcha(value)){
@@ -124,6 +126,7 @@ const Login = () => {
                     disabled={disable}
                   />
                 </div>
+                <p> <small> New Here? <Link className="text-blue-700" to={'/singup'}> Create an account  </Link> </small> </p>
               </form>
             </div>
           </div>

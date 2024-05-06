@@ -1,35 +1,58 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContex } from "../../../AuthProbider/AuthProbider";
+import { TiShoppingCart } from "react-icons/ti";
+
 
 const NavBar = () => {
-  //log-out 
-  const {user, logout} = useContext(AuthContex);
+  //log-out
+  const { user, logout } = useContext(AuthContex);
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     logout()
-    .then(()=> {})
-    .catch(error => console.log(error));
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
-    const navLink = <>
-      <li><Link to='/'>Home</Link></li>
-      <li><Link to='/menu'>Our Menu</Link></li>
-      <li><Link to='/order/pizza'>Order Now</Link></li>
-      <li><Link to='/secret'>secret</Link></li>
+  const navLink = (
+    <>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/menu">Our Menu</Link>
+      </li>
+      <li>
+        <Link to="/order/pizza">Order Now</Link>
+      </li>
+      <li>
+        <Link to="/secret">secret</Link>
+      </li>
+      <li>
+        <Link to="/">
+          <button className="btn mr-4">
+          <TiShoppingCart />
+            <div className="badge  ">+0</div>
+          </button>
+        </Link>
+      </li>
 
-
-      {
-        user ? <>
-          <span> {user ?. displayName }</span>
-          <button onClick={handleLogout} className="btn btn-active btn-ghost">Log Out</button>
-         </> :
-         <>
-          <li><Link to='/login'>Login</Link></li>
+      {user ? (
+        <>
+          {/* <span> {user ?. displayName }</span> */}
+          <button onClick={handleLogout} className="btn btn-active btn-ghost">
+            Log Out
+          </button>
         </>
-      }
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+        </>
+      )}
     </>
-
+  );
 
   return (
     <>
@@ -59,12 +82,12 @@ const NavBar = () => {
               {navLink}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">BISTRO BOSS <br />R e s t a u r a n t</a>
+          <a className="btn btn-ghost text-xl">
+            BISTRO BOSS <br />R e s t a u r a n t
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navLink}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navLink}</ul>
         </div>
         <div className="navbar-end">
           <a className="btn">Button</a>

@@ -8,6 +8,7 @@ import Cover from "../../Shared/Cover/Cover";
 import useMenu from "../../../useHooks/useMenu";
 import SectionTitle from "../../../component/SectionTitle";
 import MenuCategory from "../MenuCategory/MenuCategory";
+import './menu.css'
 
 const Menu = () => {
   const [menu] = useMenu();

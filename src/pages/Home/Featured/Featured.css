@@ -1,4 +1,11 @@
 .featured-item{
     background-image: url(../../../assets/home/featured.jpg);
-    
+    background-color: rgba(0,0,0, 0.7);
+
 }
+
+/* .banner , p , h2 , h4{
+    width: 900px;
+    height: 300px;
+
+} */

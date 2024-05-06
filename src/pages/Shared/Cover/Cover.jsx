@@ -11,7 +11,7 @@ const Cover = ({ img, title , subTitle , suTitle}) => {
     >
 
       <div
-        className="hero h-[600px] banner "
+        className="hero h-[600px]  banner "
         
       >
         <div className="hero-overlay bg-opacity-60"></div>

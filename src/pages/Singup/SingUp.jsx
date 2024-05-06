@@ -16,12 +16,12 @@ const SingUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log('ooo');
     console.log(data);
     createuser(data.email, data.password)
     .then(result => {
       const users = result.user;
       console.log(users);
+      //update profile 
       updateUserProfile(data.name , data.photoURL)
       .then(()=> {
         console.log('update ok');
@@ -31,9 +31,10 @@ const SingUp = () => {
           icon: "success",
           title: "Profile Update",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
 
         });
+        // update profile navigate page 
         navigate('/');
       })
       .catch(error => console.log(error));
@@ -77,7 +78,6 @@ const SingUp = () => {
                   type="text"
                   {...register("Photo URL" ,{ required: true })}
                   placeholder="Photo URL"
-                  name="photoURL"
                   className="input input-bordered"
                 />
                 {errors.name && <span className="text-red-600"> Photo URL field is required</span>}

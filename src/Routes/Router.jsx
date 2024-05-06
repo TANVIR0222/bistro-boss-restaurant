@@ -36,7 +36,7 @@ import Secret from "../pages/Shared/Secret/Secret";
           element:<SingUp></SingUp>
         },
         {
-          path:'secret',
+          path:'/secret',
           element:<PrivetRouter><Secret></Secret></PrivetRouter>
         }
       ]

@@ -2,9 +2,14 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContex } from "../../../AuthProbider/AuthProbider";
 import { TiShoppingCart } from "react-icons/ti";
+import useCard from "../../../useHooks/useCard";
 
 
 const NavBar = () => {
+
+  // tanstack 
+  const [card] = useCard();
+
   //log-out
   const { user, logout } = useContext(AuthContex);
 
@@ -32,7 +37,7 @@ const NavBar = () => {
         <Link to="/">
           <button className="btn mr-4">
           <TiShoppingCart />
-            <div className="badge  ">+0</div>
+            <div className="badge  ">{card.length}</div>
           </button>
         </Link>
       </li>

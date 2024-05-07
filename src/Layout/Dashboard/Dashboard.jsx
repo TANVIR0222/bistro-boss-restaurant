@@ -2,8 +2,11 @@ import { BsCreditCard2Back } from "react-icons/bs";
 import { MdOutlineDateRange } from "react-icons/md";
 import { TiCalendar, TiHome, TiShoppingCart, TiStar } from "react-icons/ti";
 import { NavLink, Outlet } from "react-router-dom";
+import useCard from "../../useHooks/useCard";
 
 const Dashboard = () => {
+    // card item see 
+    const [card] = useCard();
   return (
     <div className="flex">
       <div className="w-64 min-h-screen bg-orange-300">
@@ -28,7 +31,7 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/cart">
                 <TiShoppingCart className="text-4xl"></TiShoppingCart>
-                My Cart</NavLink>
+                My Cart( {card.length} )</NavLink>
           </li>
           <li>
             <NavLink to="/dashboard/review">

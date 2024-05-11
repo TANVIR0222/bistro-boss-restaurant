@@ -114,9 +114,9 @@ const Login = () => {
                     </a>
                   </label>
                 </div>
-                <div className="form-control">
+                <div className="form-control ">
                   <label className="label">
-                  <LoadCanvasTemplate />
+                  <LoadCanvasTemplate></LoadCanvasTemplate>
                   </label>
                   <input
                     type="text"

@@ -33,8 +33,7 @@ const AuthProbider = ({children}) => {
     const updateUserProfile = (name, photo)=>{
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
-        })
-          
+        })    
     }
 
     // current user check
@@ -67,6 +66,7 @@ const AuthProbider = ({children}) => {
             {children}
         </AuthContex.Provider>
     );
+
 };
 
 export default AuthProbider;

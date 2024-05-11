@@ -3,46 +3,53 @@ import { useForm } from "react-hook-form";
 import { AuthContex } from "../../AuthProbider/AuthProbider";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../useHooks/useAxiosPublic";
 
 const SingUp = () => {
-  const {createuser , updateUserProfile} = useContext(AuthContex);
+  const { createuser, updateUserProfile } = useContext(AuthContex);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm()
+  } = useForm();
+
+  // user
+  const axiosPublic = useAxiosPublic();
 
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
-    createuser(data.email, data.password)
-    .then(result => {
+    createuser(data.email, data.password).then((result) => {
       const users = result.user;
       console.log(users);
-      //update profile 
-      updateUserProfile(data.name , data.photoURL)
-      .then(()=> {
-        console.log('update ok');
-        reset()
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Profile Update",
-          showConfirmButton: false,
-          timer: 2000
-
-        });
-        // update profile navigate page 
-        navigate('/');
-      })
-      .catch(error => console.log(error));
-    })
-
+      //update profile
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          // send data database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log('user data ');
+              reset();
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Profile Update",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+              // update profile navigate page
+              navigate("/");
+            }
+          });
+        })
+        .catch((error) => console.log(error));
+    });
   };
-
-
 
   return (
     <div>
@@ -58,29 +65,36 @@ const SingUp = () => {
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
                   type="name"
-                  {...register("name" ,{ required: true })}
+                  {...register("name", { required: true })}
                   placeholder="name"
                   className="input input-bordered"
                 />
-                {errors.name && <span className="text-red-600"> Name field is required</span>}
+                {errors.name && (
+                  <span className="text-red-600"> Name field is required</span>
+                )}
               </div>
-            <div className="form-control">
+              <div className="form-control">
                 <label className="label">
                   <span className="label-text">Photo URL</span>
                 </label>
                 <input
                   type="text"
-                  {...register("Photo URL" ,{ required: true })}
+                  {...register("Photo URL", { required: true })}
                   placeholder="Photo URL"
                   className="input input-bordered"
                 />
-                {errors.name && <span className="text-red-600"> Photo URL field is required</span>}
+                {errors.name && (
+                  <span className="text-red-600">
+                    {" "}
+                    Photo URL field is required
+                  </span>
+                )}
               </div>
 
               <div className="form-control">
@@ -90,26 +104,48 @@ const SingUp = () => {
                 <input
                   type="email"
                   placeholder="email"
-                  {...register("email", { required: true } )}
+                  {...register("email", { required: true })}
                   className="input input-bordered"
                 />
-                {errors.email && <span className="text-red-600">Email field is required</span>}
-                
+                {errors.email && (
+                  <span className="text-red-600">Email field is required</span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-
                   type="password"
-                  {...register("password",  { required: true , minLength: 6 , pattern: /^[A-Za-z]+$/i})}
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern: /^[A-Za-z]+$/i,
+                  })}
                   placeholder="password"
                   className="input input-bordered"
                 />
-                {errors.password?.type === 'required' && <p> <span className="text-red-600">This field is required</span></p>}
-                {errors.password?.type === 'minLength' && <p><span className="text-red-600">Password must be 6 character</span></p>}
-                {errors.password?.type === 'pattern' && <p><span className="text-red-600">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</span></p>}
+                {errors.password?.type === "required" && (
+                  <p>
+                    {" "}
+                    <span className="text-red-600">This field is required</span>
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p>
+                    <span className="text-red-600">
+                      Password must be 6 character
+                    </span>
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p>
+                    <span className="text-red-600">
+                      Must contain at least one number and one uppercase and
+                      lowercase letter, and at least 8 or more characters
+                    </span>
+                  </p>
+                )}
 
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
@@ -120,7 +156,17 @@ const SingUp = () => {
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <p> <small> New Here? <Link className="text-blue-700" to={'/login'}> Dont have an account  </Link> </small> </p>
+              <p>
+                {" "}
+                <small>
+                  {" "}
+                  New Here?{" "}
+                  <Link className="text-blue-700" to={"/login"}>
+                    {" "}
+                    Dont have an account{" "}
+                  </Link>{" "}
+                </small>{" "}
+              </p>
             </form>
           </div>
         </div>

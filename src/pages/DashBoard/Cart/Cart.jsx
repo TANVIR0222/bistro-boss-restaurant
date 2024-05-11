@@ -5,8 +5,8 @@ import useAxios from "../../../useHooks/useAxios";
 
 const Cart = () => {
   //dashbord user data and card deatils
-  const [card , refetch] = useCard();
-  // total cartd price 
+  const [card, refetch] = useCard();
+  // total cartd price
   const cartTotle = card.reduce(
     (total, currentIten) => total + currentIten.price,
     0
@@ -23,22 +23,19 @@ const Cart = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
-
       if (result.isConfirmed) {
-            axiosSucure.delete(`/cards/${id}`)
-            .then((res) => {
-                refetch();
-                console.log(res);
-                if(res.data.deletedCount){
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-                }
-
+        axiosSucure.delete(`/cards/${id}`).then((res) => {
+          refetch();
+          console.log(res);
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
             });
-        }
+          }
+        });
+      }
     });
   };
   const rounded = cartTotle.toFixed(2);
@@ -65,6 +62,7 @@ const Cart = () => {
             </tr>
           </thead>
           <tbody>
+            {/* cart index ++ */}
             {card.map((item, index) => (
               <tr key={item._id}>
                 <th>{index + 1}</th>

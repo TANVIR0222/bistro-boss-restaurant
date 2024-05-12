@@ -11,6 +11,7 @@ import PrivetRouter from "./PrivetRouter";
 import Secret from "../pages/Shared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Cart from "../pages/DashBoard/Cart/Cart";
+import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 // import Cart from "../pages/DashBoard/Cart/Cart";
 
 
@@ -48,11 +49,17 @@ import Cart from "../pages/DashBoard/Cart/Cart";
     },
     {
       path:"dashboard",
-      element:<Dashboard></Dashboard>,
+      element:<PrivetRouter><Dashboard></Dashboard></PrivetRouter>,
       children:[
         {
           path:'cart',
           element:<Cart></Cart>
+        },
+        // Admin routs
+
+        {
+          path:'users',
+          element:<AllUsers></AllUsers>
         }
       ]
      

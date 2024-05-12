@@ -9,6 +9,7 @@ const useCard = () => {
   const { user } = useAuth();
 
   const { refetch, data: card = [] } = useQuery({
+    
     queryKey: ["card", user?.email],
     queryFn: async () => {
       const res = await axiosSucure.get(`/cards?email=${user.email}`);

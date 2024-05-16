@@ -1,10 +1,11 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../useHooks/useAuth";
 import useAdmin from "../useHooks/useAdmin";
+ 
+// privet custom routes only admin
+const AdminRouts = ({children}) => {
 
-const AdminRouts = (children) => {
-
-    const [user , loading] = useAuth();
+    const {user , loading} = useAuth();
     const [isAdmin , isAdminLoading] = useAdmin();
 
     const locatin = useLocation();

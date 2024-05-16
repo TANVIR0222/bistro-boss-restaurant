@@ -5,6 +5,7 @@ import useAuth from "../useHooks/useAuth";
 const PrivetRouter = ({children}) => {
     const {user , loading} = useAuth();
     const locatin = useLocation();
+    
     if(loading){
         return <progress className="progress w-56"></progress>
     }

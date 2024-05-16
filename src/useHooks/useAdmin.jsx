@@ -10,7 +10,7 @@ const useAdmin = () => {
         queryKey: [user?.email , 'isAdmin'],
         queryFn: async () => {
             const res = await axiosSucure.get(`/users/admin/${user.email}`) 
-            console.log(res.data , 'tanvir');
+            // console.log(res.data , 'tanvir');
             return res.data?.admin;
         }
     })

@@ -12,6 +12,8 @@ import Secret from "../pages/Shared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Cart from "../pages/DashBoard/Cart/Cart";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
+import Additems from "../pages/DashBoard/AddItems/Additems";
+import AdminRouts from "./AdminRouts";
 // import Cart from "../pages/DashBoard/Cart/Cart";
 
 
@@ -51,15 +53,19 @@ import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
       path:"dashboard",
       element:<PrivetRouter><Dashboard></Dashboard></PrivetRouter>,
       children:[
+        // Normal users
         {
           path:'cart',
           element:<Cart></Cart>
         },
         // Admin routs
-
+        {
+          path:'additem',
+          element:<AdminRouts><Additems></Additems></AdminRouts>
+        },
         {
           path:'users',
-          element:<AllUsers></AllUsers>
+          element:<AdminRouts><AllUsers></AllUsers></AdminRouts>
         }
       ]
      

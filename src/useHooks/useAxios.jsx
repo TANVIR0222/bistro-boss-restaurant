@@ -13,7 +13,6 @@ const useAxios = () => {
     axiosSucure.interceptors.request.use(function (config){
         // jwt -> 5
         const token = localStorage.getItem('access-token')
-        console.log('rsbi', token);
         // jwt -> 6
         config.headers.authorization = `Bearer ${token}`
         return config;
@@ -28,7 +27,6 @@ const useAxios = () => {
     } , async (error) =>{
         // jwt -> 7
         const status = error.response.status;
-        console.log(status);
 
         // jwt -7
         // for 401 or 403 logOut the user and move the user to login 

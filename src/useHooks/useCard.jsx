@@ -12,7 +12,7 @@ const useCard = () => {
     
     queryKey: ["card", user?.email],
     queryFn: async () => {
-      const res = await axiosSucure.get(`/cards?email=${user.email}`);
+      const res = await axiosSucure.get(`/cards?email=${user?.email}`);
       return res.data;
     },
   });

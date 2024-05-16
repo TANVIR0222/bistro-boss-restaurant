@@ -5,12 +5,15 @@ import { NavLink, Outlet } from "react-router-dom";
 import useCard from "../../useHooks/useCard";
 import { TfiEmail, TfiList, TfiSearch } from "react-icons/tfi";
 import {  FaUtensils } from "react-icons/fa";
+import useAdmin from "../../useHooks/useAdmin";
 
 const Dashboard = () => {
   // card item see
   const [card] = useCard();
 
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  
 
   return (
     <div className="flex">

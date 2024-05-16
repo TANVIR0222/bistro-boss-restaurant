@@ -19,7 +19,7 @@ const AllUsers = () => {
   const handleMakeAdmin = user =>{
     axiosSucure.patch(`/users/admin/${user._id}`)
     .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.modifiedCount){
             refetch();
             Swal.fire({

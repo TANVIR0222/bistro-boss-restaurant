@@ -14,6 +14,8 @@ import Cart from "../pages/DashBoard/Cart/Cart";
 import AllUsers from "../pages/DashBoard/AllUsers/AllUsers";
 import Additems from "../pages/DashBoard/AddItems/Additems";
 import AdminRouts from "./AdminRouts";
+import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
+import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
 // import Cart from "../pages/DashBoard/Cart/Cart";
 
 
@@ -59,6 +61,15 @@ import AdminRouts from "./AdminRouts";
           element:<Cart></Cart>
         },
         // Admin routs
+        
+        {
+          path:'updateItem/:id',
+          element:<AdminRouts><UpdateItem></UpdateItem></AdminRouts>
+        },
+        {
+          path:'manageitems',
+          element:<AdminRouts><ManageItems></ManageItems></AdminRouts>
+        },
         {
           path:'additem',
           element:<AdminRouts><Additems></Additems></AdminRouts>
@@ -67,6 +78,7 @@ import AdminRouts from "./AdminRouts";
           path:'users',
           element:<AdminRouts><AllUsers></AllUsers></AdminRouts>
         }
+
       ]
      
     }

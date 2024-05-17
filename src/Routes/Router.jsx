@@ -16,6 +16,7 @@ import Additems from "../pages/DashBoard/AddItems/Additems";
 import AdminRouts from "./AdminRouts";
 import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
 import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
+import Payment from "../pages/DashBoard/Payment/Payment";
 // import Cart from "../pages/DashBoard/Cart/Cart";
 
 
@@ -25,6 +26,10 @@ import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
       path: "/",
       element: <Main></Main>,
       children:[
+        {
+          path:'payment',
+          element:<Payment></Payment>
+        },
         {
             path:'/',
             element:<Home></Home>
@@ -63,12 +68,15 @@ import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
         // Admin routs
         
         {
-          path:'updateItem/:id',
-          element:<AdminRouts><UpdateItem></UpdateItem></AdminRouts>
-        },
-        {
           path:'manageitems',
           element:<AdminRouts><ManageItems></ManageItems></AdminRouts>
+      
+        },
+        {
+          path:'updateItem/:id',
+          element:<AdminRouts><UpdateItem></UpdateItem></AdminRouts>,
+          loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
+  
         },
         {
           path:'additem',

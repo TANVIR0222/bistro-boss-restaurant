@@ -21,7 +21,7 @@ const Dashboard = () => {
         <ul className="menu p-4 text-black uppercase">
           {isAdmin ? (
             <>
-            {/* Admin pnel*/}
+            {/* Admin panel*/}
               <li>
                 <NavLink to="/dashboard/adminhome">
                   <TiHome className="text-4xl"></TiHome>

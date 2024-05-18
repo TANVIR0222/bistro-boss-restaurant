@@ -62,9 +62,10 @@ const Dashboard = () => {
               <div className="divider divider-primary"></div>
             </>
           ) : (
+            // user
             <>
               <li>
-                <NavLink to="/dashboard/ourhome">
+                <NavLink to="/dashboard/userHome">
                   <TiHome className="text-4xl"></TiHome>
                   Our Home{" "}
                 </NavLink>
@@ -76,9 +77,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/payment">
+                <NavLink to="/dashboard/paymentHistory">
                   <BsCreditCard2Back className="text-4xl"></BsCreditCard2Back>
-                  payment history
+                  Payment History
                 </NavLink>
               </li>
               <li>
@@ -94,9 +95,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/booking">
-                  <MdOutlineDateRange className="text-4xl"></MdOutlineDateRange>
-                  my booking
+                <NavLink to="/dashboard/payment">
+                  <MdOutlineDateRange className="text-2xl"></MdOutlineDateRange>
+                  Payment Real History
                 </NavLink>
               </li>
 

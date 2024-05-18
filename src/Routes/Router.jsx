@@ -17,6 +17,9 @@ import AdminRouts from "./AdminRouts";
 import ManageItems from "../pages/DashBoard/ManageItems/ManageItems";
 import UpdateItem from "../pages/DashBoard/UpdateItem/UpdateItem";
 import Payment from "../pages/DashBoard/Payment/Payment";
+import PaymentHistory from "../pages/DashBoard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/DashBoard/userHome/UserHome";
+import AdminHome from "../pages/DashBoard/UpdateItem/AdminHome/AdminHome";
 // import Cart from "../pages/DashBoard/Cart/Cart";
 
 
@@ -62,9 +65,25 @@ import Payment from "../pages/DashBoard/Payment/Payment";
       children:[
         // Normal users
         {
+          path:'/deshboard/userHome',
+          element:<UserHome></UserHome>
+        },
+        {
+          path:'payment',
+          element:<Payment></Payment>
+        },
+        {
           path:'cart',
           element:<Cart></Cart>
         },
+        {
+          path:'paymentHistory',
+          element:<PaymentHistory></PaymentHistory>
+        },
+        
+
+
+
         // Admin routs
         
         {
@@ -85,7 +104,11 @@ import Payment from "../pages/DashBoard/Payment/Payment";
         {
           path:'users',
           element:<AdminRouts><AllUsers></AllUsers></AdminRouts>
-        }
+        },
+        {
+          path:'adminhome',
+          element:<AdminRouts><AdminHome></AdminHome></AdminRouts>
+        },
 
       ]
      

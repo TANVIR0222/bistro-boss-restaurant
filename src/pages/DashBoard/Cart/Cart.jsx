@@ -2,6 +2,7 @@ import { TiTrash } from "react-icons/ti";
 import useCard from "../../../useHooks/useCard";
 import Swal from "sweetalert2";
 import useAxios from "../../../useHooks/useAxios";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   //dashbord user data and card deatils
@@ -44,7 +45,14 @@ const Cart = () => {
       <div className="uppercase mt-5  flex justify-evenly">
         <h2 className="text-3xl"> Total orders : {card.length} </h2>
         <h2 className="text-3xl"> total price : {rounded} </h2>
-        <button className="btn btn-primary ">Pay</button>
+
+        {card.length === 0 ? (
+          <button disabled className="btn btn-primary ">Pay</button>
+        ) : (
+          <Link to="/dashboard/payment">
+            <button className="btn btn-primary ">Pay</button>
+          </Link>
+        )}
 
         <div className="overflow-x-auto"></div>
       </div>

@@ -3,15 +3,16 @@ import { Link } from "react-router-dom";
 import { AuthContex } from "../../../AuthProbider/AuthProbider";
 import { TiShoppingCart } from "react-icons/ti";
 import useCard from "../../../useHooks/useCard";
-
+import useAdmin from "../../../useHooks/useAdmin";
 
 const NavBar = () => {
-
-  // tanstack 
+  // tanstack
   const [card] = useCard();
 
   //log-out
   const { user, logout } = useContext(AuthContex);
+
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     logout()
@@ -31,16 +32,25 @@ const NavBar = () => {
         <Link to="/order/pizza">Order Now</Link>
       </li>
       <li>
-        <Link to="/secret">secret</Link>
-      </li>
-      <li>
         <Link to="/dashboard/cart">
           <button className="btn mr-4">
-          <TiShoppingCart />
+            <TiShoppingCart />
             <div className="badge  ">{card.length}</div>
           </button>
         </Link>
       </li>
+
+      {user && isAdmin &&
+        <li>
+          <Link to="/dashboard/adminhome">Dashboard</Link>
+        </li>
+      }
+
+      {user && !isAdmin && 
+        <li>
+          <Link to="/dashboard/userHome">Dashboard</Link>
+        </li>
+      }
 
       {user ? (
         <>

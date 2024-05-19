@@ -4,12 +4,13 @@ import useAxios from "./useAxios";
 
 const useAdmin = () => {
 
-    const {user} = useAuth();
+    const {user , loading} = useAuth();
     const axiosSucure = useAxios();
     const {data : isAdmin , isPending : isAdminLoading} = useQuery({
         queryKey: [user?.email , 'isAdmin'],
+        enabled: !loading,
         queryFn: async () => {
-            const res = await axiosSucure.get(`/users/admin/${user.email}`) 
+            const res = await axiosSucure.get(`/users/admin/${user?.email}`) 
             // console.log(res.data , 'tanvir');
             return res.data?.admin;
         }

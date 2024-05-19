@@ -65,7 +65,7 @@ import AdminHome from "../pages/DashBoard/UpdateItem/AdminHome/AdminHome";
       children:[
         // Normal users
         {
-          path:'/deshboard/userHome',
+          path:'userHome',
           element:<UserHome></UserHome>
         },
         {

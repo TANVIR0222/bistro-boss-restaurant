@@ -31,6 +31,7 @@ const NavBar = () => {
       <li>
         <Link to="/order/pizza">Order Now</Link>
       </li>
+
       <li>
         <Link to="/dashboard/cart">
           <button className="btn mr-4">
@@ -39,19 +40,17 @@ const NavBar = () => {
           </button>
         </Link>
       </li>
-
-      {user && isAdmin &&
+      {user && isAdmin && (
         <li>
           <Link to="/dashboard/adminhome">Dashboard</Link>
         </li>
-      }
+      )}
 
-      {user && !isAdmin && 
+      {user && !isAdmin && (
         <li>
           <Link to="/dashboard/userHome">Dashboard</Link>
         </li>
-      }
-
+      )}
       {user ? (
         <>
           <button onClick={handleLogout} className="btn btn-active btn-ghost">
